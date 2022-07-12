@@ -1,13 +1,14 @@
 import React from 'react';
+import { useLocalStorage } from './useLocalStorage';
 const API_URL = 'http://127.0.0.1:8000/swap/v1';
 
 function useTokens() {
     const [ openModal, setOpenModal ] = React.useState(false);
     const [ tokens, setTokens ] = React.useState([]);
     const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
-    const [ favoriteTokens, setFavoriteTokens ] = React.useState([]);
     const [ loading, setLoading ] = React.useState(true);
     const [ error, setError ] = React.useState(false);
+    const { item: favTokens, saveItem: saveFavToken } = useLocalStorage('FAV_TOKENS_V1', []);
 
     const fetchTokens = async () => {
         const url = API_URL + '/tokens';
@@ -43,11 +44,12 @@ function useTokens() {
 
     const addTokenToFavorites = (tokenDetail) => {
         return new Promise((res, rej) => {
-            if(favoriteTokens.length === 3) return rej('Ya has alcanzado el máximo de favoritos');
+            if(favTokens.length === 3) return rej('Ya has alcanzado el máximo de favoritos');
 
             if(isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('Ya has añadido este token a favoritos');
 
-            setFavoriteTokens(prevFavoriteTokens => [...prevFavoriteTokens, tokenDetail]);
+            const newFavTokens = [...favTokens, tokenDetail];
+            saveFavToken(newFavTokens);
             return res('Token añadido a favoritos correctamente');
         });
     }
@@ -56,13 +58,14 @@ function useTokens() {
         return new Promise((res, rej) => {
             if(!isTokenAlreadyAddedToFavs(tokenDetailSymbol)) return rej('No puedes eliminar un token que no has añadido aún');
 
-            setFavoriteTokens(prevFavoriteTokens => prevFavoriteTokens.filter(favToken => favToken.symbol !== tokenDetailSymbol));
+            const newFavTokens = favTokens.filter(favToken => favToken.symbol !== tokenDetailSymbol);
+            saveFavToken(newFavTokens);
             return res('Token eliminado de favoritos correctamente');
         });
     }
 
     const isTokenAlreadyAddedToFavs = (tokenDetailSymbol) => {
-        return favoriteTokens.some(favToken => {
+        return favTokens.some(favToken => {
             return favToken.symbol === tokenDetailSymbol;
         });
     }
