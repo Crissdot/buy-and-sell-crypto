@@ -41,7 +41,11 @@
     border: none;
 }
 
-.token-item-detail__button > svg {
+.token-item-detail__fav:disabled > svg {
+    opacity: 0.5;
+}
+
+.token-item-detail__fav > svg {
     width: 100%;
     height: 100%;
 }

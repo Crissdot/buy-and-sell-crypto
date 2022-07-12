@@ -43,7 +43,7 @@ function useTokens() {
 
     const addTokenToFavorites = (tokenDetail) => {
         return new Promise((res, rej) => {
-            if(favoriteTokens.length === 2) return rej('Ya has alcanzado el máximo de favoritos');
+            if(favoriteTokens.length === 3) return rej('Ya has alcanzado el máximo de favoritos');
 
             if(isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('Ya has añadido este token a favoritos');
 

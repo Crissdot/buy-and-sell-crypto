@@ -4,21 +4,26 @@ import './TokenItemDetail.css';
 function TokenItemDetail(props) {
     const [ addedToFavs, setAddedToFavs ] = React.useState(false);
 
+    React.useEffect(() => {
+        setAddedToFavs(props.isTokenAlreadyAddedToFavs(props.selectedToken.symbol));
+    }, [props.selectedToken]);
+
     const toggleFav = async (tokenDetail) => {
-        console.log(addedToFavs)
         if(!addedToFavs) {
             try {
-                await props.addTokenToFavorites(tokenDetail);
                 setAddedToFavs(true);
+                await props.addTokenToFavorites(tokenDetail);
             } catch(error) {
                 console.error(error);
+                setAddedToFavs(false);
             }
         } else {
             try {
-                await props.removeTokenFromFavorites(tokenDetail.symbol);
                 setAddedToFavs(false);
+                await props.removeTokenFromFavorites(tokenDetail.symbol);
             } catch(error) {
                 console.error(error);
+                setAddedToFavs(true);
             }
         }
     }
@@ -33,7 +38,7 @@ function TokenItemDetail(props) {
                     : `$${props.selectedToken.details.price.slice(0, 10)}`
                 }
                 </span>
-            <button className="token-item-detail__fav" type="button" onClick={() => toggleFav(props.selectedToken)}>
+            <button className="token-item-detail__fav" type="button" disabled={props.selectedToken.error} onClick={() => toggleFav(props.selectedToken)}>
                 <svg className="w-6 h-6" fill={addedToFavs ? "var(--red-color)" : "transparent"} stroke="var(--red-color)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
             </button>
         </article>
