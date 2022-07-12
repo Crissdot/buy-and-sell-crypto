@@ -30,7 +30,9 @@ function useTokens() {
         try {
             const tokenDetailResponse = await fetch(url);
             const tokenDetailJSON = await tokenDetailResponse.json();
-            const tokenDetail = {...token, ...tokenDetailJSON}
+            const tokenDetail = {...token};
+            if(tokenDetailJSON.code === 100) tokenDetail.error = {...tokenDetailJSON};
+            else tokenDetail.details = {...tokenDetailJSON};
             console.log(tokenDetail);
             setselectedToken(tokenDetail);
         } catch (error) {
