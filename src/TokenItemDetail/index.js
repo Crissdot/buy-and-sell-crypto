@@ -12,18 +12,22 @@ function TokenItemDetail(props) {
         if(!addedToFavs) {
             try {
                 setAddedToFavs(true);
-                await props.addTokenToFavorites(tokenDetail);
+                const response = await props.addTokenToFavorites(tokenDetail);
+                props.createToast(response, 'success');
             } catch(error) {
                 console.error(error);
                 setAddedToFavs(false);
+                props.createToast(error, 'error');
             }
         } else {
             try {
                 setAddedToFavs(false);
-                await props.removeTokenFromFavorites(tokenDetail.symbol);
+                const response = await props.removeTokenFromFavorites(tokenDetail.symbol);
+                props.createToast(response, 'success');
             } catch(error) {
                 console.error(error);
                 setAddedToFavs(true);
+                props.createToast(error, 'error');
             }
         }
     }

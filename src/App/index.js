@@ -1,9 +1,12 @@
 import React from 'react';
 import { useTokens } from './useTokens';
+import { useToast } from './useToast';
 import { TokenSelect } from '../TokenSelect';
 import { TokenItemDetail } from '../TokenItemDetail';
 import { TokenList } from '../TokenList';
 import { Modal } from '../Modal';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const {
@@ -20,6 +23,10 @@ function App() {
     error,
   } = useTokens();
 
+  const {
+    createToast,
+  } = useToast();
+
   return (
     <React.Fragment>
       <main>
@@ -34,6 +41,7 @@ function App() {
             addTokenToFavorites={addTokenToFavorites}
             removeTokenFromFavorites={removeTokenFromFavorites}
             isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
+            createToast={createToast}
           />
         )}
       </main>
@@ -50,6 +58,17 @@ function App() {
           />
         </Modal>
       )}
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+      />
     </React.Fragment>
   );
 }
