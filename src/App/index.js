@@ -13,6 +13,9 @@ function App() {
     fetchTokens,
     selectedToken,
     fetchTokenDetail,
+    addTokenToFavorites,
+    removeTokenFromFavorites,
+    isTokenAlreadyAddedToFavs,
     loading,
     error,
   } = useTokens();
@@ -26,7 +29,12 @@ function App() {
           fetchTokens={fetchTokens}
         />
         {!selectedToken.symbol.includes('---') && (
-          <TokenItemDetail selectedToken={selectedToken} />
+          <TokenItemDetail 
+            selectedToken={selectedToken} 
+            addTokenToFavorites={addTokenToFavorites}
+            removeTokenFromFavorites={removeTokenFromFavorites}
+            isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
+          />
         )}
       </main>
       {openModal && (

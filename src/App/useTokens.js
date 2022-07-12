@@ -5,6 +5,7 @@ function useTokens() {
     const [ openModal, setOpenModal ] = React.useState(false);
     const [ tokens, setTokens ] = React.useState([]);
     const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
+    const [ favoriteTokens, setFavoriteTokens ] = React.useState([]);
     const [ loading, setLoading ] = React.useState(true);
     const [ error, setError ] = React.useState(false);
 
@@ -33,11 +34,37 @@ function useTokens() {
             const tokenDetail = {...token};
             if(tokenDetailJSON.code === 100) tokenDetail.error = {...tokenDetailJSON};
             else tokenDetail.details = {...tokenDetailJSON};
-            console.log(tokenDetail);
+
             setselectedToken(tokenDetail);
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const addTokenToFavorites = (tokenDetail) => {
+        return new Promise((res, rej) => {
+            if(favoriteTokens.length === 2) return rej('Ya has alcanzado el máximo de favoritos');
+
+            if(isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('Ya has añadido este token a favoritos');
+
+            setFavoriteTokens(prevFavoriteTokens => [...prevFavoriteTokens, tokenDetail]);
+            return res('Token añadido a favoritos correctamente');
+        });
+    }
+
+    const removeTokenFromFavorites = (tokenDetailSymbol) => {
+        return new Promise((res, rej) => {
+            if(!isTokenAlreadyAddedToFavs(tokenDetailSymbol)) return rej('No puedes eliminar un token que no has añadido aún');
+
+            setFavoriteTokens(prevFavoriteTokens => prevFavoriteTokens.filter(favToken => favToken.symbol !== tokenDetailSymbol));
+            return res('Token eliminado de favoritos correctamente');
+        });
+    }
+
+    const isTokenAlreadyAddedToFavs = (tokenDetailSymbol) => {
+        return favoriteTokens.some(favToken => {
+            return favToken.symbol === tokenDetailSymbol;
+        });
     }
 
     return {
@@ -47,6 +74,9 @@ function useTokens() {
         fetchTokens,
         selectedToken,
         fetchTokenDetail,
+        addTokenToFavorites,
+        removeTokenFromFavorites,
+        isTokenAlreadyAddedToFavs,
         loading,
         error,
     };
