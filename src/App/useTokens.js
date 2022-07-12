@@ -2,6 +2,7 @@ import React from 'react';
 
 function useTokens() {
     const [ openModal, setOpenModal ] = React.useState(true);
+    const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
 
     const tokens =
     {
@@ -643,6 +644,8 @@ function useTokens() {
         openModal,
         setOpenModal,
         tokens,
+        selectedToken,
+        setselectedToken,
     };
 }
 

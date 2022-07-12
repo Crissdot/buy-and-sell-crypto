@@ -9,16 +9,18 @@ function App() {
     openModal,
     setOpenModal,
     tokens,
+    selectedToken,
+    setselectedToken,
   } = useTokens();
 
   return (
     <React.Fragment>
       <main>
-        <TokenSelect setOpenModal={setOpenModal}/>
+        <TokenSelect setOpenModal={setOpenModal} selectedToken={selectedToken}/>
       </main>
       {openModal && (
         <Modal>
-          <TokenList setOpenModal={setOpenModal} tokens={tokens}/>
+          <TokenList setOpenModal={setOpenModal} tokens={tokens} setselectedToken={setselectedToken}/>
         </Modal>
       )}
     </React.Fragment>
