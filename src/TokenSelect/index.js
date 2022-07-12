@@ -4,6 +4,7 @@ import './TokenSelect.css'
 function TokenSelect(props) {
     const selectToken = () => {
         props.setOpenModal(true);
+        props.fetchTokens();
     }
 
     return (

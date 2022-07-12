@@ -15,8 +15,8 @@ function TokenList(props) {
         <section className='token-list'>
             <h2 className='token-list__title'>Lista de Tokens</h2>
             <article className='token-list__items'>
-                {props.tokens.records.map(token => (
-                    <div className='token-item' key={token.symbol}>
+                {props.tokens.records?.map((token, index) => (
+                    <div className='token-item' key={index}>
                         <p className='token-item__name'>
                             <span className='token-item__symbol'>{token.symbol}: </span>
                             {token.name}
