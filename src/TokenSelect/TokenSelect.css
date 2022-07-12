@@ -16,8 +16,10 @@
     height: 35px;
     margin: 0 auto;
     background-color: var(--alternative-color);
-    border: none;
+    border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--primary-color);
 }
 

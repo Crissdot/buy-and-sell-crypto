@@ -22,11 +22,11 @@ function App() {
       <main>
         <TokenSelect 
           setOpenModal={setOpenModal} 
-          selectedToken={selectedToken} 
+          selectedTokenSymbol={selectedToken.symbol} 
           fetchTokens={fetchTokens}
         />
         {!selectedToken.symbol.includes('---') && (
-          <TokenItemDetail/>
+          <TokenItemDetail selectedToken={selectedToken} />
         )}
       </main>
       {openModal && (

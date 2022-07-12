@@ -26,7 +26,7 @@ function useTokens() {
     }
 
     const fetchTokenDetail = async (token) => {
-        const url = API_URL + '/price?sellToken=ETH&buyToken=DAI&sellAmount=1000000000000000000';
+        const url = API_URL + `/price?sellToken=${token.symbol}&buyToken=DAI&sellAmount=1000000000000000000`;
         try {
             const tokenDetailResponse = await fetch(url);
             const tokenDetailJSON = await tokenDetailResponse.json();
