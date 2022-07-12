@@ -1,0 +1,25 @@
+.token-select {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.token-select__title {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.token-select__button {
+    width: 90%;
+    height: 35px;
+    margin: 0 auto;
+    background-color: var(--alternative-color);
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.token-select__button:hover {
+    border: 2px solid var(--secondary-color);
+}
