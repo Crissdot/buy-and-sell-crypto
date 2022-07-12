@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTokens } from './useTokens';
 import { TokenSelect } from '../TokenSelect';
+import { TokenItemDetail } from '../TokenItemDetail';
 import { TokenList } from '../TokenList';
 import { Modal } from '../Modal';
 
@@ -24,6 +25,9 @@ function App() {
           selectedToken={selectedToken} 
           fetchTokens={fetchTokens}
         />
+        {!selectedToken.symbol.includes('---') && (
+          <TokenItemDetail/>
+        )}
       </main>
       {openModal && (
         <Modal>
