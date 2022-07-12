@@ -12,7 +12,7 @@ function App() {
     tokens,
     fetchTokens,
     selectedToken,
-    setselectedToken,
+    fetchTokenDetail,
     loading,
     error,
   } = useTokens();
@@ -34,7 +34,7 @@ function App() {
           <TokenList 
             setOpenModal={setOpenModal}
             tokens={tokens}
-            setselectedToken={setselectedToken}
+            fetchTokenDetail={fetchTokenDetail}
             loading={loading}
             error={error}
             onLoading={() => <p>Estamos cargando, por favor espere</p>}

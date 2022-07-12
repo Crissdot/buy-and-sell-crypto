@@ -25,13 +25,26 @@ function useTokens() {
         }
     }
 
+    const fetchTokenDetail = async (token) => {
+        const url = API_URL + '/price?sellToken=ETH&buyToken=DAI&sellAmount=1000000000000000000';
+        try {
+            const tokenDetailResponse = await fetch(url);
+            const tokenDetailJSON = await tokenDetailResponse.json();
+            const tokenDetail = {...token, ...tokenDetailJSON}
+            console.log(tokenDetail);
+            setselectedToken(tokenDetail);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return {
         openModal,
         setOpenModal,
         tokens,
         fetchTokens,
         selectedToken,
-        setselectedToken,
+        fetchTokenDetail,
         loading,
         error,
     };

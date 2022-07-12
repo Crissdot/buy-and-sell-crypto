@@ -7,7 +7,7 @@ function TokenList(props) {
     };
 
     const tokenSelected = (token) => {
-        props.setselectedToken(token);
+        props.fetchTokenDetail(token);
         props.setOpenModal(false);
     }
 
