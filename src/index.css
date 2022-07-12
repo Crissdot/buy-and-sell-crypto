@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,300&display=swap');
 
 :root {
-  --primary-color: #02182B;
-  --secondary-color: #48B8D0;
-  --alternative-color: #D6D6FF;
-  --background-color: #F0F0FF;
-  --red-color: #D7263D;
-  --green-color: #4DAA57;
-  --border-radius: 5px;
+  --primary-color: #07004D;
+  --secondary-color: #009FB7;
+  --alternative-color: #EEE;
+  --background-color: #FFF;
+  --red-color: #FF101F;
+  --green-color: #98CE00;
+  --border-radius: 0.5rem;
 }
 
 * {
@@ -18,6 +18,7 @@
 
 body {
   background-color: var(--background-color);
+  color: var(--primary-color);
   font-family: 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -18,6 +18,7 @@
     background-color: var(--alternative-color);
     border: none;
     border-radius: var(--border-radius);
+    color: var(--primary-color);
 }
 
 .token-select__button:hover {
