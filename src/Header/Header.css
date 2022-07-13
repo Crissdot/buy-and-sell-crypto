@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    height: 50px;
+    margin: 10px auto;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+}
+
+.header__home, .header__favs {
+    width: 50%;
+    padding-bottom: 5px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.active {
+    border-bottom: 2px solid white;
+}

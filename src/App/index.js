@@ -1,6 +1,8 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useTokens } from './useTokens';
 import { useToast } from './useToast';
+import { Header } from '../Header';
 import { TokenSelect } from '../TokenSelect';
 import { TokenItemDetail } from '../TokenItemDetail';
 import { TokenList } from '../TokenList';
@@ -29,22 +31,32 @@ function App() {
 
   return (
     <React.Fragment>
-      <main>
-        <TokenSelect 
-          setOpenModal={setOpenModal} 
-          selectedTokenSymbol={selectedToken.symbol} 
-          fetchTokens={fetchTokens}
-        />
-        {!selectedToken.symbol.includes('---') && (
-          <TokenItemDetail 
-            selectedToken={selectedToken} 
-            addTokenToFavorites={addTokenToFavorites}
-            removeTokenFromFavorites={removeTokenFromFavorites}
-            isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
-            createToast={createToast}
-          />
-        )}
-      </main>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={
+            <main>
+              <TokenSelect 
+                setOpenModal={setOpenModal} 
+                selectedTokenSymbol={selectedToken.symbol} 
+                fetchTokens={fetchTokens}
+              />
+              {!selectedToken.symbol.includes('---') && (
+                <TokenItemDetail 
+                  selectedToken={selectedToken} 
+                  addTokenToFavorites={addTokenToFavorites}
+                  removeTokenFromFavorites={removeTokenFromFavorites}
+                  isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
+                  createToast={createToast}
+                />
+              )}
+            </main>
+          } />
+          <Route path="/favoritos" element={
+            <h3>Estamos en favoritos</h3>
+          } />
+        </Routes>
+      </BrowserRouter>
       {openModal && (
         <Modal>
           <TokenList 
