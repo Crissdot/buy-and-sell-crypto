@@ -1,6 +1,6 @@
 .fav-tokens {
     width: 90%;
-    margin: 0 auto 25px;
+    margin: 25px auto;
 }
 
 .fav-tokens__title {
@@ -17,4 +17,19 @@
 .fav-tokens-benefits__text {
     font-size: 1.2rem;
     margin-left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .fav-tokens__title {
+        font-size: 3rem;
+    }
+    .fav-tokens__info {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .fav-tokens-benefits__text {
+        font-size: 2rem;
+        margin-left: 20px;
+    }
 }

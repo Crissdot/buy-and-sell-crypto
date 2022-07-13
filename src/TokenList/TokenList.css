@@ -19,6 +19,7 @@
 
 .token-list__items {
     width: 100%;
+    max-width: 500px;
     height: 100%;
     overflow-y: scroll;
 }
@@ -55,6 +56,7 @@
     background-color: var(--green-color);
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
     border: none;
+    cursor: pointer;
 }
 
 .token-item__button > svg {
@@ -64,9 +66,21 @@
 
 .token-list__button {
     width: 30%;
+    max-width: 150px;
     height: 35px;
     background-color: var(--red-color);
     border: none;
     border-radius: var(--border-radius);
     color: white;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .token-list__title {
+        font-size: 2.2rem;
+    }
+    .token-list__button {
+        font-size: 1.7rem;
+        height: 60px;
+    }
 }
