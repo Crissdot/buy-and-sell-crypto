@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useRelativePath } from './useRelativePath';
 import { useTokens } from './useTokens';
 import { useToast } from './useToast';
 import { Header } from '../Header';
@@ -31,12 +32,16 @@ function App() {
     createToast,
   } = useToast();
 
+  const {
+    location
+  } = useRelativePath();
+
   return (
     <React.Fragment>
       <BrowserRouter>
-        <Header />
+        <Header location={location} />
         <Routes>
-          <Route exact path="/" element={
+          <Route exact path={`${location.pathname}`} element={
             <main>
               <TokenSelect 
                 setOpenModal={setOpenModal} 
@@ -54,7 +59,7 @@ function App() {
               )}
             </main>
           } />
-          <Route exact path="/favoritos" element={
+          <Route exact path={`${location.pathname}/favoritos`} element={
             <main>
               <TokenFav />
               {favTokens.map((favToken, index) => (
