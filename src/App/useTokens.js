@@ -80,6 +80,7 @@ function useTokens() {
         addTokenToFavorites,
         removeTokenFromFavorites,
         isTokenAlreadyAddedToFavs,
+        favTokens,
         loading,
         error,
     };

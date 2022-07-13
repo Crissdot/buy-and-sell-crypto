@@ -6,6 +6,7 @@ import { Header } from '../Header';
 import { TokenSelect } from '../TokenSelect';
 import { TokenItemDetail } from '../TokenItemDetail';
 import { TokenList } from '../TokenList';
+import { TokenFav } from '../TokenFav';
 import { Modal } from '../Modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +22,7 @@ function App() {
     addTokenToFavorites,
     removeTokenFromFavorites,
     isTokenAlreadyAddedToFavs,
+    favTokens,
     loading,
     error,
   } = useTokens();
@@ -43,7 +45,7 @@ function App() {
               />
               {!selectedToken.symbol.includes('---') && (
                 <TokenItemDetail 
-                  selectedToken={selectedToken} 
+                  token={selectedToken} 
                   addTokenToFavorites={addTokenToFavorites}
                   removeTokenFromFavorites={removeTokenFromFavorites}
                   isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
@@ -52,8 +54,20 @@ function App() {
               )}
             </main>
           } />
-          <Route path="/favoritos" element={
-            <h3>Estamos en favoritos</h3>
+          <Route exact path="/favoritos" element={
+            <main>
+              <TokenFav />
+              {favTokens.map((favToken, index) => (
+                <TokenItemDetail 
+                  key={index}
+                  token={favToken} 
+                  addTokenToFavorites={addTokenToFavorites}
+                  removeTokenFromFavorites={removeTokenFromFavorites}
+                  isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
+                  createToast={createToast}
+                  />
+              ))}
+            </main>
           } />
         </Routes>
       </BrowserRouter>
