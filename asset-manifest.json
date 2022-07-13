@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/buy-and-sell-crypto/static/css/main.15f97b98.css",
-    "main.js": "/buy-and-sell-crypto/static/js/main.dd7d8f9a.js",
+    "main.js": "/buy-and-sell-crypto/static/js/main.a06a1e2b.js",
     "index.html": "/buy-and-sell-crypto/index.html",
     "main.15f97b98.css.map": "/buy-and-sell-crypto/static/css/main.15f97b98.css.map",
-    "main.dd7d8f9a.js.map": "/buy-and-sell-crypto/static/js/main.dd7d8f9a.js.map"
+    "main.a06a1e2b.js.map": "/buy-and-sell-crypto/static/js/main.a06a1e2b.js.map"
   },
   "entrypoints": [
     "static/css/main.15f97b98.css",
-    "static/js/main.dd7d8f9a.js"
+    "static/js/main.a06a1e2b.js"
   ]
 }
