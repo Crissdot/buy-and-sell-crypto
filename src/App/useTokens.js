@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
-const API_URL = 'http://127.0.0.1:8000/swap/v1';
+const API_URL = 'https://api.0x.org/swap/v1';
 
 function useTokens() {
     const [ openModal, setOpenModal ] = React.useState(false);
