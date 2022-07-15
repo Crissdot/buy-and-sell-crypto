@@ -1,22 +1,25 @@
 .fav-tokens {
     width: 90%;
-    margin: 25px auto;
+    margin: 0 auto 25px;
 }
 
 .fav-tokens__title {
-    font-size: 2rem;
-    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    text-align: center;
 }
 
 .fav-tokens__info {
+    color: #7665ac;
     margin-bottom: 10px;
 }
 
 .fav-tokens-benefits__text {
-    font-size: 1.2rem;
-    margin-left: 20px;
+    color: #7665ac;
+    font-size: 1rem;
+    margin-left: 25px;
 }
 
 @media screen and (min-width: 768px) {
