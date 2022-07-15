@@ -80,8 +80,3 @@
     opacity: 0.75;
 }
 
-@media screen and (min-width: 768px) {
-    .token-list__title {
-        font-size: 2.2rem;
-    }
-}
