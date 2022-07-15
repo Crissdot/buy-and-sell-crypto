@@ -1,36 +1,56 @@
 .header {
-    position: absolute;
-    top: 15px;
-    left: 25%;
+    position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 40px;
-    background-color: var(--primary-color);
-    border-radius: var(--border-radius);
+    width: 100%;
+    height: 100px;
 }
 
-.header__home, .header__favs {
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: max-content;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+    border-radius: 0.75rem;
+    box-shadow: 0 0 #000, 0 0 #000, 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+}
+
+.header-nav__home, .header-nav__favs {
+    display: block;
     width: 50%;
-    padding-bottom: 5px;
-    color: white;
-    font-size: 0.8rem;
+    height: 100%;
+    margin: 0 0.25rem;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
     text-decoration: none;
-    text-transform: uppercase;
     text-align: center;
+    cursor: pointer;
+}
+
+.header-nav__home {
+    margin-left: 0;
+}
+
+.header-nav__home:not(.active):hover, .header-nav__favs:not(.active):hover {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .active {
-    border-bottom: 2px solid white;
+    background-color: #341762;
+    color: white;
 }
 
 @media screen and (min-width: 768px) {
-    .header {
+    .header__nav {
         max-width: 250px;
         left: calc(50% - 125px);
     }
-    .header__home, .header__favs {
+    .header-nav__home, .header__favs {
         font-size: 1.2rem;
     }
 }

@@ -4,10 +4,12 @@ import './Header.css';
 
 function Header(props) {
     return (
-        <nav className="header">
-            <NavLink className="header__home" to='/'>Inicio</NavLink>
-            <NavLink className="header__favs" to='/favoritos'>Favoritos</NavLink>
-        </nav>
+        <header className="header">
+            <nav className="header__nav">
+                <NavLink className="header-nav__home" to='/'><span>Inicio</span></NavLink>
+                <NavLink className="header-nav__favs" to='/favoritos'><span>Favoritos</span></NavLink>
+            </nav>
+        </header>
     );
 }
 

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,300&display=swap');
 
 :root {
-  --primary-color: #07004D;
+  --primary-color: rgb(82, 39, 167);
   --secondary-color: #009FB7;
   --alternative-color: #EEE;
-  --background-color: #FFF;
+  --background-color: #F7F7F7;
   --red-color: #FF101F;
   --green-color: #98CE00;
   --border-radius: 0.5rem;
