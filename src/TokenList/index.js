@@ -14,23 +14,22 @@ function TokenList(props) {
     return (
         <section className='token-list'>
             <h2 className='token-list__title'>Lista de Tokens</h2>
-            <article className='token-list__items'>
+            <ul className='token-list__items'>
                 {props.loading && props.onLoading()}
                 {props.error && props.onError()}
 
                 {!props.loading && !props.error && props.tokens.records?.map((token, index) => (
-                    <div className='token-item' key={index}>
-                        <p className='token-item__name'>
-                            <span className='token-item__symbol'>{token.symbol}: </span>
-                            {token.name}
-                        </p>
-                        <button className='token-item__button' type='button' onClick={() => tokenSelected(token)}>
-                            <svg className="w-6 h-6" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" /></svg>
+                    <li key={index}>
+                        <button className='token-item' type='button' onClick={tokenSelected}>
+                            <strong className='token-item__symbol'>{token.symbol}</strong>
+                            <p className='token-item__name'>{token.name}</p>
                         </button>
-                    </div>
+                    </li>
                 ))}
-            </article>
-            <button className='token-list__button' type='button' onClick={back}>Volver</button>
+            </ul>
+            <button className='token-list__close' type='button' onClick={back}>
+                <svg className="w-6 h-6" fill="var(--primary-color)" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
+            </button>
         </section>
     );
 }
