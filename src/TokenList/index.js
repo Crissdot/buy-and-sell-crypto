@@ -20,7 +20,7 @@ function TokenList(props) {
 
                 {!props.loading && !props.error && props.tokens.records?.map((token, index) => (
                     <li key={index}>
-                        <button className='token-item' type='button' onClick={tokenSelected}>
+                        <button className='token-item' type='button' onClick={() => tokenSelected(token)}>
                             <strong className='token-item__symbol'>{token.symbol}</strong>
                             <p className='token-item__name'>{token.name}</p>
                         </button>

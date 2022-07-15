@@ -11,7 +11,7 @@
 
 :root {
   --primary-color: rgb(82, 39, 167);
-  --secondary-color: #009FB7;
+  --secondary-color: rgb(23,225,253);
   --alternative-color: #EEE;
   --background-color: #F7F7F7;
   --red-color: #FF101F;
@@ -41,7 +41,7 @@ main {
   max-width: 600px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 125px 0;
+  padding: 125px 0 0;
 }
 
 ::-webkit-scrollbar {
