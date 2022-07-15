@@ -27,7 +27,7 @@ function useTokens() {
         }
     }
 
-    const fetchTokenDetail = async (token) => {
+    const fetchTokenDetail = async (token, isFav = false) => {
         const sellToken = token.symbol === 'BUSD' ? 'DAI' : 'BUSD';
         const url = API_URL + `/quote?buyToken=${token.symbol}&sellToken=${sellToken}&sellAmount=100000000000000000`;
         try {
@@ -40,10 +40,16 @@ function useTokens() {
                 tokenDetail.details.price = (1 / tokenDetail.details.price).toString();
             }
 
-            setselectedToken(tokenDetail);
+            if(!isFav) setselectedToken(tokenDetail);
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const _updateFavToken = (tokenDetail) => {
+        tokenDetail.interval = setInterval(() => {
+            fetchTokenDetail(tokenDetail, true);
+        }, 30000);
     }
 
     const addTokenToFavorites = (tokenDetail) => {
@@ -54,16 +60,18 @@ function useTokens() {
 
             const newFavTokens = [...favTokens, tokenDetail];
             saveFavToken(newFavTokens);
+            _updateFavToken(tokenDetail);
             return res('Token añadido a favoritos correctamente');
         });
     }
 
-    const removeTokenFromFavorites = (tokenDetailSymbol) => {
+    const removeTokenFromFavorites = (tokenDetail) => {
         return new Promise((res, rej) => {
-            if(!isTokenAlreadyAddedToFavs(tokenDetailSymbol)) return rej('No puedes eliminar un token que no has añadido aún');
+            if(!isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('No puedes eliminar un token que no has añadido aún');
 
-            const newFavTokens = favTokens.filter(favToken => favToken.symbol !== tokenDetailSymbol);
+            const newFavTokens = favTokens.filter(favToken => favToken.symbol !== tokenDetail.symbol);
             saveFavToken(newFavTokens);
+            clearInterval(tokenDetail.interval);
             return res('Token eliminado de favoritos correctamente');
         });
     }

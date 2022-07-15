@@ -22,7 +22,7 @@ function TokenItemDetail(props) {
         } else {
             try {
                 setAddedToFavs(false);
-                const response = await props.removeTokenFromFavorites(tokenDetail.symbol);
+                const response = await props.removeTokenFromFavorites(tokenDetail);
                 props.createToast(response, 'success');
             } catch(error) {
                 console.error(error);
