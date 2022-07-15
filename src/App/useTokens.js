@@ -28,13 +28,17 @@ function useTokens() {
     }
 
     const fetchTokenDetail = async (token) => {
-        const url = API_URL + `/price?sellToken=${token.symbol}&buyToken=DAI&sellAmount=1000000000000000000`;
+        const sellToken = token.symbol === 'BUSD' ? 'DAI' : 'BUSD';
+        const url = API_URL + `/quote?buyToken=${token.symbol}&sellToken=${sellToken}&sellAmount=100000000000000000`;
         try {
             const tokenDetailResponse = await fetch(url);
             const tokenDetailJSON = await tokenDetailResponse.json();
             const tokenDetail = {...token};
             if(tokenDetailJSON.code === 100) tokenDetail.error = {...tokenDetailJSON};
-            else tokenDetail.details = {...tokenDetailJSON};
+            else {
+                tokenDetail.details = {...tokenDetailJSON};
+                tokenDetail.details.price = (1 / tokenDetail.details.price).toString();
+            }
 
             setselectedToken(tokenDetail);
         } catch (error) {
