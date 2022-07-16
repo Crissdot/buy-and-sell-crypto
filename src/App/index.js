@@ -23,6 +23,7 @@ function App() {
     removeTokenFromFavorites,
     isTokenAlreadyAddedToFavs,
     favTokens,
+    priceFavTokens,
     loading,
     error,
   } = useTokens();
@@ -61,6 +62,7 @@ function App() {
                 <TokenItemDetail 
                   key={index}
                   token={favToken} 
+                  priceFavTokens = {priceFavTokens}
                   addTokenToFavorites={addTokenToFavorites}
                   removeTokenFromFavorites={removeTokenFromFavorites}
                   isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}

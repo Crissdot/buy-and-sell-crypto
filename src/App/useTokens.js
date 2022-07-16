@@ -12,18 +12,19 @@ function useTokens() {
     const { item: priceFavTokens, saveItem: savePriceFavToken, getItem: getPriceFavTokens } = useLocalStorage('PRICES_FAV_TOKENS_V1', {});
 
     React.useEffect(() => {
+        savePriceFavToken({});
+
         const lSFavTokens = getFavTokens();
-        const tokenIntervals = lSFavTokens.map(token => {
+        const tokenIntervals = lSFavTokens.map((token) => {
+            fetchTokenDetail(token, true);
             const tokenInterval = _updateFavToken(token);
             return tokenInterval;
         });
 
-        savePriceFavToken({});
-
         return () => {
             tokenIntervals.forEach(tokenInterval => {
                 clearInterval(tokenInterval);
-            })
+            });
         }
     }, []);
 
@@ -76,10 +77,9 @@ function useTokens() {
         }
         newPrices[tokenDetail.symbol].prices.push(tokenDetail.details.price);
 
-        const average = newPrices[tokenDetail.symbol].prices.reduce((price, sum) => parseInt(sum) + parseInt(price), 0) / pricesLength+1;
-        newPrices[tokenDetail.symbol].average = average;
+        const average = newPrices[tokenDetail.symbol].prices.reduce((price, sum) => parseFloat(sum) + parseFloat(price), 0) / (pricesLength+1);
+        newPrices[tokenDetail.symbol].average = average.toString();
 
-        console.log(newPrices);
         savePriceFavToken(newPrices);
     }
 
@@ -132,6 +132,7 @@ function useTokens() {
         removeTokenFromFavorites,
         isTokenAlreadyAddedToFavs,
         favTokens,
+        priceFavTokens,
         loading,
         error,
     };
