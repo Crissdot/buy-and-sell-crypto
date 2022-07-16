@@ -4,7 +4,7 @@ import './TokenItemDetail.css';
 function TokenItemDetail(props) {
     const [ addedToFavs, setAddedToFavs ] = React.useState(false);
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         setAddedToFavs(props.isTokenAlreadyAddedToFavs(props.token.symbol));
     }, [props.token]);
 

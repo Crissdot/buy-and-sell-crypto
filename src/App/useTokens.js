@@ -8,7 +8,21 @@ function useTokens() {
     const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
     const [ loading, setLoading ] = React.useState(true);
     const [ error, setError ] = React.useState(false);
-    const { item: favTokens, saveItem: saveFavToken } = useLocalStorage('FAV_TOKENS_V1', []);
+    const { item: favTokens, saveItem: saveFavToken, getItem: getFavTokens } = useLocalStorage('FAV_TOKENS_V1', []);
+
+    React.useEffect(() => {
+        const lSFavTokens = getFavTokens();
+        const tokenIntervals = lSFavTokens.map(token => {
+            const tokenInterval = _updateFavToken(token);
+            return tokenInterval;
+        });
+
+        return () => {
+            tokenIntervals.forEach(tokenInterval => {
+                clearInterval(tokenInterval);
+            })
+        }
+    }, []);
 
     const fetchTokens = async () => {
         const url = API_URL + '/tokens';
@@ -48,8 +62,10 @@ function useTokens() {
 
     const _updateFavToken = (tokenDetail) => {
         tokenDetail.interval = setInterval(() => {
+            console.log('Getting price of', tokenDetail.symbol);
             fetchTokenDetail(tokenDetail, true);
         }, 30000);
+        return tokenDetail.interval;
     }
 
     const addTokenToFavorites = (tokenDetail) => {

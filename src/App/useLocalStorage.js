@@ -3,7 +3,7 @@ import React from 'react';
 function useLocalStorage(lSName, lSInitialValue) {
     const [item, setItem] = React.useState(lSInitialValue);
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         getItem();
     }, []);
 
@@ -19,7 +19,8 @@ function useLocalStorage(lSName, lSInitialValue) {
                 parsedItem = JSON.parse(lSItem);
             }
 
-            setItem(parsedItem)
+            setItem(parsedItem);
+            return parsedItem;
         } catch (error) {
             console.error(error);
         }
