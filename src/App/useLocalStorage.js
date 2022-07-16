@@ -3,10 +3,6 @@ import React from 'react';
 function useLocalStorage(lSName, lSInitialValue) {
     const [item, setItem] = React.useState(lSInitialValue);
 
-    React.useLayoutEffect(() => {
-        getItem();
-    }, []);
-
     const getItem = () => {
         try {
             const lSItem = localStorage.getItem(lSName);

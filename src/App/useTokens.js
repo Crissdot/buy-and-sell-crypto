@@ -9,6 +9,7 @@ function useTokens() {
     const [ loading, setLoading ] = React.useState(true);
     const [ error, setError ] = React.useState(false);
     const { item: favTokens, saveItem: saveFavToken, getItem: getFavTokens } = useLocalStorage('FAV_TOKENS_V1', []);
+    const { item: priceFavTokens, saveItem: savePriceFavToken, getItem: getPriceFavTokens } = useLocalStorage('PRICES_FAV_TOKENS_V1', {});
 
     React.useEffect(() => {
         const lSFavTokens = getFavTokens();
@@ -16,6 +17,8 @@ function useTokens() {
             const tokenInterval = _updateFavToken(token);
             return tokenInterval;
         });
+
+        savePriceFavToken({});
 
         return () => {
             tokenIntervals.forEach(tokenInterval => {
@@ -54,17 +57,37 @@ function useTokens() {
                 tokenDetail.details.price = (1 / tokenDetail.details.price).toString();
             }
 
-            if(!isFav) setselectedToken(tokenDetail);
+            if(isFav) _updateOnlyPriceFavToken(tokenDetail);
+            else setselectedToken(tokenDetail);
         } catch (error) {
             console.error(error);
         }
+    }
+
+    const _updateOnlyPriceFavToken = (tokenDetail) => {
+        const lSPriceFavTokens = getPriceFavTokens();
+        const newPrices = {...lSPriceFavTokens};
+        if(!lSPriceFavTokens[tokenDetail.symbol]) {
+            newPrices[tokenDetail.symbol] = {prices: []};
+        } 
+        const pricesLength = newPrices[tokenDetail.symbol].prices.length;
+        if(pricesLength === 5) {
+            newPrices[tokenDetail.symbol].prices = newPrices[tokenDetail.symbol].prices.splice(1);
+        }
+        newPrices[tokenDetail.symbol].prices.push(tokenDetail.details.price);
+
+        const average = newPrices[tokenDetail.symbol].prices.reduce((price, sum) => parseInt(sum) + parseInt(price), 0) / pricesLength+1;
+        newPrices[tokenDetail.symbol].average = average;
+
+        console.log(newPrices);
+        savePriceFavToken(newPrices);
     }
 
     const _updateFavToken = (tokenDetail) => {
         tokenDetail.interval = setInterval(() => {
             console.log('Getting price of', tokenDetail.symbol);
             fetchTokenDetail(tokenDetail, true);
-        }, 30000);
+        }, 3000);
         return tokenDetail.interval;
     }
 
