@@ -29,18 +29,18 @@ function FundAccount(props) {
     return (
         <section className='fund-account'>
             <h2 className='fund-account__title'>Ingresa una tarjeta de crédito</h2>
-            <form>
-                <label>
-                    Número tarjeta de crédito
-                    <input type="text" value={creditCardNumber} onChange={onCreditCardNumberChange} />
+            <form className='fund-account__form'>
+                <label className='fund-account-form__number'>
+                    Número tarjeta de crédito:
+                    <input type="number" value={creditCardNumber} onChange={onCreditCardNumberChange} />
                 </label>
-                <label>
-                    Fecha de vencimiento
-                    <input type="text" value={creditCardDate} onChange={onCreditCardDateChange} />
+                <label className='fund-account-form__date'>
+                    Fecha de vencimiento:
+                    <input type="date" value={creditCardDate} onChange={onCreditCardDateChange} />
                 </label>
-                <label>
-                    CCV
-                    <input type="text" value={creditCardCCV} onChange={onCreditCardCCVChange} />
+                <label className='fund-account-form__ccv'>
+                    CCV:
+                    <input type="number" value={creditCardCCV} onChange={onCreditCardCCVChange} />
                 </label>
             </form>
             <button className='fund-account__close' type='button' onClick={back}>

@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     gap: 15px;
     width: 50%;
@@ -19,6 +18,32 @@
     font-size: 1.125rem;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+
+.fund-account__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fund-account__form > label {
+    color: #7665ac;
+}
+
+.fund-account__form > label > input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 8px;
+    padding: 8px 16px;
+    background: #d4d5d9;
+    border: none;
+    border-radius: 8px;
+    border-style: none;
+    font-family: 'Averta Regular';
+    font-size: 16px;
+    color: var(--primary-color);
+    outline: none;
 }
 
 
