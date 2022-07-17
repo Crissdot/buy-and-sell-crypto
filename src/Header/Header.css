@@ -46,3 +46,38 @@
     background-color: #341762;
     color: white;
 }
+
+
+.header__fund {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background-color: rgb(23,225,253);
+    border: 1px solid rgb(23,225,253);
+    border-radius: 0.5rem;
+    font-family: 'Averta Regular';
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    cursor: pointer;
+}
+
+.header__fund:not([disabled]):focus, .header__fund:not([disabled]):hover {
+    box-shadow: 0 0 0 3px rgb(53 240 208 / 50%);
+}
+
+.header__fund > span {
+    margin-right: 10px;
+}
+
+.header__fund > svg {
+    width: 25px;
+    height: 25px;
+}
