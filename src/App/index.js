@@ -47,7 +47,7 @@ function App() {
               {!selectedToken.symbol.includes('---') && (
                 <TokenItemDetail 
                   token={selectedToken} 
-                  priceFavTokens = {priceFavTokens}
+                  priceFavTokens={priceFavTokens}
                   addTokenToFavorites={addTokenToFavorites}
                   removeTokenFromFavorites={removeTokenFromFavorites}
                   isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
@@ -62,8 +62,8 @@ function App() {
               {favTokens.map((favToken, index) => (
                 <TokenItemDetail 
                   key={index}
-                  token={favToken} 
-                  priceFavTokens = {priceFavTokens}
+                  token={favToken}
+                  priceFavTokens={priceFavTokens}
                   addTokenToFavorites={addTokenToFavorites}
                   removeTokenFromFavorites={removeTokenFromFavorites}
                   isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}
