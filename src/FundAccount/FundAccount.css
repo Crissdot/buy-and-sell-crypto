@@ -31,6 +31,12 @@
     color: #7665ac;
 }
 
+.fund-account__form > label > .input--error {
+    float: right;
+    color: var(--red-color);
+    font-size: 0.75rem;
+}
+
 .fund-account__form > label > input {
     width: 100%;
     margin: 0;
@@ -40,7 +46,7 @@
     border: 1px solid var(--red-color);
     border-radius: 8px;
     font-family: 'Averta Regular';
-    font-size: 16px;
+    font-size: 1.25rem;
     color: var(--primary-color);
     outline: none;
 }
