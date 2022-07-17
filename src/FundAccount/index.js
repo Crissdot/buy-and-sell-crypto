@@ -55,9 +55,18 @@ function FundAccount(props) {
             addSeparator(event, ccdate, 2, '/', setCreditCardDate);
             if (ccdate.length === 5) {
                 setCreditCardDate(ccdate.substr(0, 5));
-                setIsCreditCardDateValid(true);
-            } 
-            else setIsCreditCardDateValid(false);
+
+                const month = ccdate.substr(0, 2);
+                const year = '20' + ccdate.substr(3);
+                const expDate = new Date(year + '/' + month);
+
+                if(expDate) {
+                    const today = new Date();
+                    if(expDate > today) {
+                        setIsCreditCardDateValid(true);
+                    } else setIsCreditCardDateValid(false);
+                } else setIsCreditCardDateValid(false);
+            } else setIsCreditCardDateValid(false);
         }
     }
 
