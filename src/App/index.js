@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { useTokens } from './useTokens';
 import { useToast } from './useToast';
 import { Header } from '../Header';
+import { FundAccount } from '../FundAccount';
 import { TokenSelect } from '../TokenSelect';
 import { TokenItemDetail } from '../TokenItemDetail';
 import { TokenList } from '../TokenList';
@@ -15,6 +16,8 @@ function App() {
   const {
     openModal,
     setOpenModal,
+    openFundAccount,
+    setOpenFundAccount,
     tokens,
     fetchTokens,
     selectedToken,
@@ -35,7 +38,11 @@ function App() {
   return (
     <React.Fragment>
       <Router basename='/'>
-        <Header/>
+        <Header
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          setOpenFundAccount={setOpenFundAccount}
+        />
         <Routes>
           <Route exact path='/' element={
             <main>
@@ -76,15 +83,21 @@ function App() {
       </Router>
       {openModal && (
         <Modal>
-          <TokenList 
-            setOpenModal={setOpenModal}
-            tokens={tokens}
-            fetchTokenDetail={fetchTokenDetail}
-            loading={loading}
-            error={error}
-            onLoading={() => <p>Estamos cargando, por favor espere</p>}
-            onError={() => <p>No pudimos cargar, ocurrió un error</p>}
-          />
+          {openFundAccount
+            ? <FundAccount 
+                setOpenModal={setOpenModal}
+                setOpenFundAccount={setOpenFundAccount}
+              />
+            : <TokenList 
+                setOpenModal={setOpenModal}
+                tokens={tokens}
+                fetchTokenDetail={fetchTokenDetail}
+                loading={loading}
+                error={error}
+                onLoading={() => <p>Estamos cargando, por favor espere</p>}
+                onError={() => <p>No pudimos cargar, ocurrió un error</p>}
+              />
+          }
         </Modal>
       )}
       <ToastContainer

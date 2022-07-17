@@ -4,6 +4,7 @@ const API_URL = 'http://127.0.0.1:8000/swap/v1';
 
 function useTokens() {
     const [ openModal, setOpenModal ] = React.useState(false);
+    const [ openFundAccount, setOpenFundAccount ] = React.useState(false);
     const [ tokens, setTokens ] = React.useState([]);
     const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
     const [ loading, setLoading ] = React.useState(true);
@@ -137,6 +138,8 @@ function useTokens() {
     return {
         openModal,
         setOpenModal,
+        openFundAccount,
+        setOpenFundAccount,
         tokens,
         fetchTokens,
         selectedToken,

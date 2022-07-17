@@ -1,0 +1,39 @@
+.fund-account {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 50%;
+    min-width: 300px;
+    height: 400px;
+    padding: 15px 10px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+}
+
+
+.fund-account__title {
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+.fund-account__close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.fund-account__close:hover {
+    opacity: 0.75;
+}
