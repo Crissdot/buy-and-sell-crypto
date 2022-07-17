@@ -29,8 +29,28 @@
     font-weight: 400;
 }
 
-.token-item-detail__price {
-    font-size: 1.5rem;
+.token-item-detail__prices {
+    display: flex;
+    width: 100%;
+}
+
+.token-item-price--last, .token-item-price--avg  {
+    width: 50%;
+}
+
+.token-item-price--last {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.token-item-price--last > p, .token-item-price--avg > p {
+    color: #7665ac;
+}
+
+.token-item-price--last > span, .token-item-price--avg > span {
+    font-size: 1.35rem;
     font-weight: 300;
     font-style: italic;
 }

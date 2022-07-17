@@ -71,9 +71,10 @@ function useTokens() {
         if(!lSPriceFavTokens[tokenDetail.symbol]) {
             newPrices[tokenDetail.symbol] = {prices: []};
         } 
-        const pricesLength = newPrices[tokenDetail.symbol].prices.length;
+        let pricesLength = newPrices[tokenDetail.symbol].prices.length;
         if(pricesLength === 5) {
             newPrices[tokenDetail.symbol].prices = newPrices[tokenDetail.symbol].prices.splice(1);
+            pricesLength--;
         }
         newPrices[tokenDetail.symbol].prices.push(tokenDetail.details.price);
 
