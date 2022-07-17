@@ -79,9 +79,14 @@
     cursor: pointer;
 }
 
-.token-item-button--sell:focus, .token-item-button--buy:focus,
-.token-item-button--sell:hover, .token-item-button--buy:hover {
+.token-item-button--sell:not([disabled]):focus, .token-item-button--buy:not([disabled]):focus,
+.token-item-button--sell:not([disabled]):hover, .token-item-button--buy:not([disabled]):hover {
     box-shadow: 0 0 0 3px rgb(53 240 208 / 50%);
+}
+
+.token-item-button--sell:disabled, .token-item-button--buy:disabled {
+    opacity: 0.5;
+    cursor: default;
 }
 
 

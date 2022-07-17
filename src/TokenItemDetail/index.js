@@ -72,10 +72,10 @@ function TokenItemDetail(props) {
             </div>
             {addedToFavs && avgPrice && 
                 <div className="token-item-detail__buttons">
-                <button className="token-item-button--sell" type="button" >
+                <button className="token-item-button--sell" type="button" disabled={lastPrice <= avgPrice} >
                     Vender
                 </button>
-                <button className="token-item-button--buy" type="button" >
+                <button className="token-item-button--buy" type="button" disabled={lastPrice > avgPrice} >
                     Comprar
                 </button>
                 </div>
