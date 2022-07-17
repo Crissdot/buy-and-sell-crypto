@@ -10,15 +10,18 @@ function TokenItemDetail(props) {
         setAddedToFavs(props.isTokenAlreadyAddedToFavs(props.token.symbol));
     }, [props.token]);
 
-    React.useEffect(() => {
-        if(props.priceFavTokens) {
+    React.useLayoutEffect(() => {
+        if(addedToFavs && props.priceFavTokens) {
             const favToken = props.priceFavTokens[props.token.symbol];
             if(favToken) {
                 setLastPrice(favToken.prices[favToken.prices.length-1]);
                 setAvgPrice(favToken.average);
             }
+        } else {
+            setLastPrice(props.token.details.price);
+            setAvgPrice(null);
         }
-    }, [props.priceFavTokens]);
+    }, [addedToFavs, props.priceFavTokens]);
 
     const toggleFav = async (tokenDetail) => {
         if(!addedToFavs) {

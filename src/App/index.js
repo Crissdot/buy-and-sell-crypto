@@ -47,6 +47,7 @@ function App() {
               {!selectedToken.symbol.includes('---') && (
                 <TokenItemDetail 
                   token={selectedToken} 
+                  priceFavTokens = {priceFavTokens}
                   addTokenToFavorites={addTokenToFavorites}
                   removeTokenFromFavorites={removeTokenFromFavorites}
                   isTokenAlreadyAddedToFavs={isTokenAlreadyAddedToFavs}

@@ -85,6 +85,7 @@ function useTokens() {
     }
 
     const _updateFavToken = (tokenDetail) => {
+        _updateOnlyPriceFavToken(tokenDetail);
         tokenDetail.interval = setInterval(() => {
             console.log('Getting price of', tokenDetail.symbol);
             fetchTokenDetail(tokenDetail, true);
