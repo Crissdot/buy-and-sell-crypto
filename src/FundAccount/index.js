@@ -14,15 +14,34 @@ function FundAccount(props) {
         props.setOpenFundAccount(false);
     };
 
+    const addSeparator = (event, text, distance, separator, setFunction) => {
+        const mult = parseInt(text.length / distance);
+        const newDistance = distance*mult+mult-1;
+        if(event.nativeEvent.inputType === "insertText" ){
+            if(text.length === newDistance) {
+                setFunction(text + separator);
+            } else if(text.length === newDistance+1) {
+                setFunction(text.substr(0, newDistance) + separator + text.substr(newDistance));
+            }
+        } else if(event.nativeEvent.inputType === "deleteContentBackward" && text.length === newDistance+1) {
+            setFunction(text.substr(0, newDistance));
+        }
+    }
+
     const onCreditCardNumberChange = (event) => {
         const ccnum = event.target.value;
         const myRe = /^\d{0,4}-?\d{0,4}-?\d{0,4}-?\d{0,4}$/g;
         const isValid = myRe.exec(ccnum);
         if(ccnum.length <= 19 && isValid) {
             setCreditCardNumber(ccnum);
-            const isCreditCard = parseInt(ccnum.substr(0, 4));
-            if(ccnum.length === 19 && isCreditCard >= 4200) {
-                setIsCreditCardNumberValid(true);
+            addSeparator(event, ccnum, 4, '-', setCreditCardNumber);
+            if(ccnum.length === 19) {
+                const isCreditCard = parseInt(ccnum.substr(0, 4));
+                if(isCreditCard) {
+                    setCreditCardNumber(ccnum.substr(0, 19));
+                    setIsCreditCardNumberValid(true);
+                }
+                else setIsCreditCardNumberValid(false);
             } else setIsCreditCardNumberValid(false);
         }
     }
@@ -33,7 +52,11 @@ function FundAccount(props) {
         const isValid = myRe.exec(ccdate);
         if(ccdate.length <= 5 && isValid) {
             setCreditCardDate(ccdate);
-            if (ccdate.length === 5) setIsCreditCardDateValid(true);
+            addSeparator(event, ccdate, 2, '/', setCreditCardDate);
+            if (ccdate.length === 5) {
+                setCreditCardDate(ccdate.substr(0, 5));
+                setIsCreditCardDateValid(true);
+            } 
             else setIsCreditCardDateValid(false);
         }
     }
