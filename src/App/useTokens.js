@@ -8,8 +8,8 @@ function useTokens() {
     const [ selectedToken, setselectedToken ] = React.useState({symbol: '---'});
     const [ loading, setLoading ] = React.useState(true);
     const [ error, setError ] = React.useState(false);
-    const { item: favTokens, saveItem: saveFavToken, getItem: getFavTokens } = useLocalStorage('FAV_TOKENS_V1', []);
-    const { item: priceFavTokens, saveItem: savePriceFavToken, getItem: getPriceFavTokens } = useLocalStorage('PRICES_FAV_TOKENS_V1', {});
+    const { item: favTokens, saveItem: saveFavToken, getItem: getFavTokens } = useLocalStorage('FAV_TOKENS_V2', []);
+    const { item: priceFavTokens, saveItem: savePriceFavToken, getItem: getPriceFavTokens } = useLocalStorage('PRICES_FAV_TOKENS_V2', {});
 
     React.useEffect(() => {
         savePriceFavToken({});
