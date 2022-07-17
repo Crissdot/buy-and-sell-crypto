@@ -16,7 +16,9 @@ function FundAccount(props) {
 
     const onCreditCardNumberChange = (event) => {
         const ccnum = event.target.value;
-        if(ccnum.length <= 19) {
+        const myRe = /^\d{0,4}-?\d{0,4}-?\d{0,4}-?\d{0,4}$/g;
+        const isValid = myRe.exec(ccnum);
+        if(ccnum.length <= 19 && isValid) {
             setCreditCardNumber(ccnum);
             const isCreditCard = parseInt(ccnum.substr(0, 4));
             if(ccnum.length === 19 && isCreditCard >= 4200) {
@@ -27,7 +29,9 @@ function FundAccount(props) {
 
     const onCreditCardDateChange = (event) => {
         const ccdate = event.target.value;
-        if(ccdate.length <= 5) {
+        const myRe = /^\d{0,2}\/?\d{0,2}$/g;
+        const isValid = myRe.exec(ccdate);
+        if(ccdate.length <= 5 && isValid) {
             setCreditCardDate(ccdate);
             if (ccdate.length === 5) setIsCreditCardDateValid(true);
             else setIsCreditCardDateValid(false);
@@ -36,7 +40,9 @@ function FundAccount(props) {
 
     const onCreditCardCCVChange = (event) => {
         const ccv = event.target.value;
-        if(ccv.length <= 3) {
+        const myRe = /^\d*$/g;
+        const isValid = myRe.exec(ccv);
+        if(ccv.length <= 3 && isValid) {
             setCreditCardCCV(ccv);
             if (ccv.length === 3) setIsCreditCardCCVValid(true);
             else setIsCreditCardCCVValid(false);
