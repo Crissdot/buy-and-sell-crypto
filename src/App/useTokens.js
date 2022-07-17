@@ -99,9 +99,12 @@ function useTokens() {
 
             if(isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('Ya has añadido este token a favoritos');
 
+            const favTokenInterval = _updateFavToken(tokenDetail);
+            tokenDetail.interval = favTokenInterval;
+
             const newFavTokens = [...favTokens, tokenDetail];
             saveFavToken(newFavTokens);
-            _updateFavToken(tokenDetail);
+
             return res('Token añadido a favoritos correctamente');
         });
     }
@@ -110,9 +113,17 @@ function useTokens() {
         return new Promise((res, rej) => {
             if(!isTokenAlreadyAddedToFavs(tokenDetail.symbol)) return rej('No puedes eliminar un token que no has añadido aún');
 
+            const lSFavTokens = getFavTokens();
+            const tokenInterval = lSFavTokens.find(token => token.symbol === tokenDetail.symbol);
+            clearInterval(tokenInterval.interval);
+
             const newFavTokens = favTokens.filter(favToken => favToken.symbol !== tokenDetail.symbol);
             saveFavToken(newFavTokens);
-            clearInterval(tokenDetail.interval);
+
+            const lSPriceFavTokens = getPriceFavTokens();
+            delete lSPriceFavTokens[tokenDetail.symbol];
+            savePriceFavToken(lSPriceFavTokens);
+
             return res('Token eliminado de favoritos correctamente');
         });
     }
