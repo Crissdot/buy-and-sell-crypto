@@ -1,6 +1,6 @@
 {
   "name": "buy-and-sell-crypto",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://crissdot.github.io/buy-and-sell-crypto/",
   "private": true,
   "dependencies": {
