@@ -8,6 +8,8 @@ function FundAccount(props) {
     const [ creditCardDateError, setCreditCardDateError ] = React.useState('Debe llenar este campo');
     const [ creditCardCCV, setCreditCardCCV ] = React.useState('');
     const [ creditCardCCVError, setCreditCardCCVError ] = React.useState('Debe llenar este campo');
+    const [ amount, setAmount ] = React.useState('');
+    const [ amountError, setAmountError ] = React.useState('Debe llenar este campo');
 
     const back = () => {
         props.setOpenModal(false);
@@ -88,11 +90,27 @@ function FundAccount(props) {
             setCreditCardCCV(ccv);
             if (ccv.length === 3) {
                 setCreditCardCCVError(null);
-            }
-            else {
+            } else {
                 setCreditCardCCVError('Debe llenar este campo');
             }
-        }       
+        }
+    }
+
+    const onAmounthange = (event) => {
+        const usd = event.target.value;
+        const myRe = /^\d*$/g;
+        const isValid = myRe.exec(usd);
+        if(isValid) {
+            setAmount(usd);
+            if (usd >= 1) {
+                setAmountError(null);
+            } else {
+                setAmountError('Debe ingresar almenos 1 dólar');
+            }
+        } else {
+            setAmountError('Solo puede ingresar números enteros');
+        }
+        if(usd.length === 0) setAmountError('Debe llenar este campo');
     }
 
     return (
@@ -136,6 +154,19 @@ function FundAccount(props) {
                         value={creditCardCCV} 
                         onChange={onCreditCardCCVChange}
                         placeholder="123"
+                    />
+                </label>
+                <label className='fund-account-form__usd'>
+                    Ingrese el monto en $USD:
+                    {amountError &&
+                        <span className='input--error'>*{amountError}</span>
+                    }
+                    <input 
+                        type="text" 
+                        className={`${!amountError ? "valid" : ""}`} 
+                        value={amount} 
+                        onChange={onAmounthange}
+                        placeholder="$1000000"
                     />
                 </label>
             </form>
