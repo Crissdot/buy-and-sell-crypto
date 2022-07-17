@@ -3,11 +3,12 @@ import './TokenItemDetail.css';
 
 function TokenItemDetail(props) {
     const [ addedToFavs, setAddedToFavs ] = React.useState(false);
-    const [ lastPrice, setLastPrice ] = React.useState(props.token.details.price);
+    const [ lastPrice, setLastPrice ] = React.useState(props.token?.details?.price);
     const [ avgPrice, setAvgPrice ] = React.useState(null);
 
     React.useLayoutEffect(() => {
         setAddedToFavs(props.isTokenAlreadyAddedToFavs(props.token.symbol));
+        setLastPrice(props.token?.details?.price);
     }, [props.token]);
 
     React.useLayoutEffect(() => {
@@ -18,7 +19,6 @@ function TokenItemDetail(props) {
                 setAvgPrice(favToken.average);
             }
         } else {
-            setLastPrice(props.token.details.price);
             setAvgPrice(null);
         }
     }, [addedToFavs, props.priceFavTokens]);
@@ -53,7 +53,7 @@ function TokenItemDetail(props) {
             <p className="token-item-detail__name">{props.token.name}</p>
             <div className="token-item-detail__prices">
                 <div className="token-item-price--last">
-                    <p>Precio</p>
+                    {!props.token.error && <p>Precio</p>}
                     <span>
                         {props.token.error 
                             ? props.token.error.validationErrors[0].reason.toLowerCase().replaceAll('_', ' ')
