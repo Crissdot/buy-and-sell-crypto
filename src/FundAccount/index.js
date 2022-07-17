@@ -3,8 +3,11 @@ import './FundAccount.css';
 
 function FundAccount(props) {
     const [ creditCardNumber, setCreditCardNumber ] = React.useState('');
+    const [ isCreditCardNumberValid, setIsCreditCardNumberValid ] = React.useState(false);
     const [ creditCardDate, setCreditCardDate ] = React.useState('');
+    const [ isCreditCardDateValid, setIsCreditCardDateValid ] = React.useState(false);
     const [ creditCardCCV, setCreditCardCCV ] = React.useState('');
+    const [ isCreditCardCCVValid, setIsCreditCardCCVValid ] = React.useState(false);
 
     const back = () => {
         props.setOpenModal(false);
@@ -13,17 +16,31 @@ function FundAccount(props) {
 
     const onCreditCardNumberChange = (event) => {
         const ccnum = event.target.value;
-        setCreditCardNumber(ccnum);
+        if(ccnum.length <= 19) {
+            setCreditCardNumber(ccnum);
+            const isCreditCard = parseInt(ccnum.substr(0, 4));
+            if(ccnum.length === 19 && isCreditCard >= 4200) {
+                setIsCreditCardNumberValid(true);
+            } else setIsCreditCardNumberValid(false);
+        }
     }
 
     const onCreditCardDateChange = (event) => {
         const ccdate = event.target.value;
-        setCreditCardDate(ccdate);
+        if(ccdate.length <= 5) {
+            setCreditCardDate(ccdate);
+            if (ccdate.length === 5) setIsCreditCardDateValid(true);
+            else setIsCreditCardDateValid(false);
+        }
     }
 
     const onCreditCardCCVChange = (event) => {
         const ccv = event.target.value;
-        setCreditCardCCV(ccv);
+        if(ccv.length <= 3) {
+            setCreditCardCCV(ccv);
+            if (ccv.length === 3) setIsCreditCardCCVValid(true);
+            else setIsCreditCardCCVValid(false);
+        }       
     }
 
     return (
@@ -32,15 +49,33 @@ function FundAccount(props) {
             <form className='fund-account__form'>
                 <label className='fund-account-form__number'>
                     Número tarjeta de crédito:
-                    <input type="number" value={creditCardNumber} onChange={onCreditCardNumberChange} />
+                    <input 
+                        type="text"
+                        className={`${isCreditCardNumberValid ? "valid" : ""}`}
+                        value={creditCardNumber}
+                        onChange={onCreditCardNumberChange}
+                        placeholder="4200-XXXX-XXXX-XXXX"
+                    />
                 </label>
                 <label className='fund-account-form__date'>
                     Fecha de vencimiento:
-                    <input type="date" value={creditCardDate} onChange={onCreditCardDateChange} />
+                    <input
+                        type="text"
+                        className={`${isCreditCardDateValid ? "valid" : ""}`}
+                        value={creditCardDate}
+                        onChange={onCreditCardDateChange}
+                        placeholder="12/22"
+                    />
                 </label>
                 <label className='fund-account-form__ccv'>
                     CCV:
-                    <input type="number" value={creditCardCCV} onChange={onCreditCardCCVChange} />
+                    <input 
+                        type="text" 
+                        className={`${isCreditCardCCVValid ? "valid" : ""}`} 
+                        value={creditCardCCV} 
+                        onChange={onCreditCardCCVChange}
+                        placeholder="123"
+                    />
                 </label>
             </form>
             <button className='fund-account__close' type='button' onClick={back}>
