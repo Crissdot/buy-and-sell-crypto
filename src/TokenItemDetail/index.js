@@ -61,7 +61,7 @@ function TokenItemDetail(props) {
                         }
                     </span>
                 </div>
-                {avgPrice && 
+                {addedToFavs && avgPrice && 
                     <div className="token-item-price--avg">
                         <p>Precio promedio últimos 2 minutos</p>
                         <span>
@@ -70,7 +70,16 @@ function TokenItemDetail(props) {
                     </div>
                 }
             </div>
-                
+            {addedToFavs && avgPrice && 
+                <div className="token-item-detail__buttons">
+                <button className="token-item-button--sell" type="button" >
+                    Vender
+                </button>
+                <button className="token-item-button--buy" type="button" >
+                    Comprar
+                </button>
+                </div>
+            }
             <button className="token-item-detail__fav" type="button" disabled={props.token.error} onClick={() => toggleFav(props.token)}>
                 <svg className="w-6 h-6" fill={addedToFavs ? "var(--secondary-color)" : "transparent"} stroke="var(--secondary-color)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
             </button>
