@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/buy-and-sell-crypto/static/css/main.4aac838d.css",
-    "main.js": "/buy-and-sell-crypto/static/js/main.46791141.js",
+    "main.css": "/buy-and-sell-crypto/static/css/main.17e06fd2.css",
+    "main.js": "/buy-and-sell-crypto/static/js/main.7165d1fa.js",
     "static/media/Averta-ExtraBold.otf": "/buy-and-sell-crypto/static/media/Averta-ExtraBold.a772a1ca2884f5cc9a3b.otf",
     "static/media/Averta-Regular.otf": "/buy-and-sell-crypto/static/media/Averta-Regular.397a1b0637bd93ee3284.otf",
     "index.html": "/buy-and-sell-crypto/index.html",
-    "main.4aac838d.css.map": "/buy-and-sell-crypto/static/css/main.4aac838d.css.map",
-    "main.46791141.js.map": "/buy-and-sell-crypto/static/js/main.46791141.js.map"
+    "main.17e06fd2.css.map": "/buy-and-sell-crypto/static/css/main.17e06fd2.css.map",
+    "main.7165d1fa.js.map": "/buy-and-sell-crypto/static/js/main.7165d1fa.js.map"
   },
   "entrypoints": [
-    "static/css/main.4aac838d.css",
-    "static/js/main.46791141.js"
+    "static/css/main.17e06fd2.css",
+    "static/js/main.7165d1fa.js"
   ]
 }
