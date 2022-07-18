@@ -54,6 +54,43 @@
     border-color: var(--green-color);
 }
 
+.fund-account-form__usd--disabled {
+    opacity: 0;
+}
+
+.fund-account-form__usd--disabled > input {
+    cursor: default;
+}
+
+
+.fund-account-form__submit {
+    width: 50%;
+    margin: 0 auto;
+    padding: 0.25rem 0.75rem;
+    background-color: rgb(23,225,253);
+    border: 1px solid rgb(23,225,253);
+    border-radius: 0.5rem;
+    font-family: 'Averta Regular';
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    cursor: pointer;
+}
+
+.fund-account-form__submit:not([disabled]):focus, .fund-account-form__submit:not([disabled]):hover {
+    box-shadow: 0 0 0 3px rgb(53 240 208 / 50%);
+}
+
+.fund-account-form__submit:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
 
 .fund-account__close {
     position: absolute;

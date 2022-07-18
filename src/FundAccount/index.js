@@ -113,10 +113,15 @@ function FundAccount(props) {
         if(usd.length === 0) setAmountError('Debe llenar este campo');
     }
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+        back();
+    };
+
     return (
         <section className='fund-account'>
             <h2 className='fund-account__title'>Ingresa una tarjeta de crédito</h2>
-            <form className='fund-account__form'>
+            <form className='fund-account__form' onSubmit={onSubmit}>
                 <label className='fund-account-form__number'>
                     Número tarjeta de crédito:
                     {creditCardNumberError &&
@@ -156,7 +161,7 @@ function FundAccount(props) {
                         placeholder="123"
                     />
                 </label>
-                <label className='fund-account-form__usd'>
+                <label className={`fund-account-form__usd${(creditCardNumberError || creditCardDateError || creditCardCCVError) ? "--disabled" : ""}`}>
                     Ingrese el monto en $USD:
                     {amountError &&
                         <span className='input--error'>*{amountError}</span>
@@ -167,8 +172,12 @@ function FundAccount(props) {
                         value={amount} 
                         onChange={onAmounthange}
                         placeholder="$1000000"
+                        disabled={creditCardNumberError || creditCardDateError || creditCardCCVError}
                     />
                 </label>
+                <button className="fund-account-form__submit" type="submit" disabled={creditCardNumberError || creditCardDateError || creditCardCCVError || amountError}>
+                    Fondear
+                </button>
             </form>
             <button className='fund-account__close' type='button' onClick={back}>
                 <svg className="w-6 h-6" fill="var(--primary-color)" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
