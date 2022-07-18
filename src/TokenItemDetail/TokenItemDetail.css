@@ -62,7 +62,8 @@
 }
 
 .token-item-button--sell, .token-item-button--buy  {
-    width: 175px;
+    width: 45%;
+    max-width: 175px;
     padding: 0.25rem 0.5rem;
     background-color: rgb(23,225,253);
     border: 1px solid rgb(23,225,253);
