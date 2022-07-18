@@ -25,6 +25,8 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .fund-account__form > label {
